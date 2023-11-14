@@ -18,7 +18,7 @@ exports.up = async function (knex) {
         table.increments('task_id')
         table.string('task_description', 400).notNullable()
         table.string('task_notes', 400)
-        table.boolean('task_completed').defaultTo(0).notNullable()
+        table.boolean('task_completed').defaultTo(false).notNullable()
         table.integer('project_id')
             .notNullable()
             .unsigned()
@@ -41,7 +41,7 @@ exports.up = async function (knex) {
             .notNullable()
             .unsigned()
             .references('resource_id')
-            .inTable('resource')
+            .inTable('resources')
             .onDelete('RESTRICT')
             .onUpdate('RESTRICT')
     });
@@ -52,7 +52,7 @@ exports.up = async function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = async function (knex) {
-    knex.schema
+    await knex.schema
         .dropTableIfExists('project_resource')
         .dropTableIfExists('tasks')
         .dropTableIfExists('resources')

@@ -3,10 +3,10 @@ const Task = require('./model')
 
 const router = express.Router()
 
-router.get('/:id', (req, res, next) => {
-    Task()
+router.get('/', (req, res, next) => {
+    Task.get()
         .then (item => {
-            res.status().json()
+            res.status(200).json(item)
         })
         .catch (next)
 })

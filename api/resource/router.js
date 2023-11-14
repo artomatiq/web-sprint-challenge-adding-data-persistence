@@ -4,15 +4,15 @@ const Resource = require('./model')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-    Task()
+    Resource.get()
         .then (item => {
-            res.status().json()
+            res.status(200).json(item)
         })
         .catch (next)
 })
 
 router.post('/', (req, res, next) => {
-    Task()
+    Resource.post()
         .then (item => {
             res.status().json()
         })

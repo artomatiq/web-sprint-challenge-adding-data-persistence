@@ -8,7 +8,9 @@
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "down": "knex migrate:down",
+    "up": "knex migrate:up"
   },
   "repository": {
     "type": "git",
