@@ -4,7 +4,7 @@ const Project = require('./model')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-    Project.get()
+    Project.getProjects()
         .then (items => {
             res.status(200).json(items)
         })
@@ -12,9 +12,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    Task()
+    Project.postProjects(req.params.body)
         .then (item => {
-            res.status().json()
+            res.status(201).json(item)
         })
         .catch (next)    
 })

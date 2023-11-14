@@ -28,7 +28,7 @@ exports.up = async function (knex) {
             .onUpdate('RESTRICT')
     });
 
-    await knex.schema.createTable('project_resource', table => {
+    await knex.schema.createTable('project_resources', table => {
         table.increments()
         table.integer('project_id')
             .notNullable()

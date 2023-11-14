@@ -1,6 +1,6 @@
 const db = require('../../data/dbConfig')
 
-const get = async function () {
+const getProjects = async function () {
     const projects = await db('projects')
         .select('*')
 
@@ -11,4 +11,18 @@ const get = async function () {
     return projects
 }
 
-module.exports = {get}
+const postProjects = async function (project) {
+    // await db('projects')
+    //     .insert(project)
+    // const projects = await getProjects()
+    return ['hello', 'hi']
+    // let result = {}
+    // for (const p of projects) {
+    //     if (p.project_id === project.project_id) {
+    //         result = p
+    //     }
+    // }
+    // return result
+}
+
+module.exports = {getProjects, postProjects}
