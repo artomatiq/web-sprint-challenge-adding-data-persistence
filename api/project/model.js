@@ -14,12 +14,14 @@ const getProjects = async function () {
 const postProjects = async function (project) {
     await db('projects')
         .insert(project)
-    const projects = await getProjects()
 
-    let result = {}
+
+    const projects = await getProjects()
+    let result
     for (const p of projects) {
-        if (p.project_id === project.project_id) {
+        if (p.project_name === project.project_name) {
             result = p
+            delete result.project_id
         }
     }
     return result
