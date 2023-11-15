@@ -4,7 +4,7 @@ const Resource = require('./model')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-    Resource.getResource()
+    Resource.getResources()
         .then (item => {
             res.status(200).json(item)
         })

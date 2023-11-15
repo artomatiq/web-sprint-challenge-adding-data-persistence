@@ -1,6 +1,6 @@
 const db = require('../../data/dbConfig')
 
-const getResource = async function () {
+const getResources = async function () {
     const resources = await db('resources')
         .select('*')
 
@@ -12,15 +12,15 @@ const postResource = async function (resource) {
         .insert(resource)
 
 
-    // const projects = await getResource()
-    // let result
-    // for (const p of projects) {
-    //     if (p.project_name === project.project_name) {
-    //         result = p
-    //         delete result.project_id
-    //     }
-    // }
-    return true //result
+    const resources = await getResources()
+    let result
+    for (const r of resources) {
+        if (r.resource_name === resource.resource_name) {
+            result = r
+            delete result.resource_id
+        }
+    }
+    return result
 }
 
-module.exports = {getResource, postResource}
+module.exports = {getResources, postResource}
