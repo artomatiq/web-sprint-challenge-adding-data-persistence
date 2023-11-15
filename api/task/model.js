@@ -1,6 +1,6 @@
 const db = require('../../data/dbConfig')
 
-const get = async function () {
+const getTasks = async function () {
     const tasks = await db('tasks as t')
         .join('projects as p', 't.project_id', 'p.project_id')
         .select(
@@ -17,5 +17,19 @@ const get = async function () {
 
     return tasks
 }
+const postTask = async function (task) {
+    await db('tasks')
+        .insert(task)
 
-module.exports = {get}
+    const tasks = await getTasks()
+    let result
+    for (const t of tasks) {
+        if (t.task_description === task.task_description) {
+            result = t
+            delete result.task_id
+        }
+    }
+    return result
+}
+
+module.exports = {getTasks, postTask}
